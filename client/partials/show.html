@@ -1,0 +1,14 @@
+<div ng-controller="sessionController">
+    <a href="#/dash">Home</a>
+    <a href="/logout">Logout</a><br>
+    <h3>{{cur_user.name}}'s Bucket List</h3>
+
+    <h4>Done</h4>
+    <div ng-repeat='bucket in cur_user._buckets'>
+        <input ng-show='done' type="checkbox" ng-model='done'><span ng-show='done'>{{bucket._creator.name}} | {{bucket.title}} - {{bucket.description}} - {{bucket.createdAt | date: 'medium'}}</span>
+    </div>
+    <h4>Pending</h4>
+    <div ng-repeat='bucket in cur_user._buckets'>
+        <input ng-hide='pending' type="checkbox" ng-change='update()' ng-model='pending' ng-init='pending=false'><span ng-hide='pending'>{{bucket._creator.name}} | {{bucket.title}} - {{bucket.description}} - {{bucket.createdAt | date: 'medium'}}</span>
+    </div>
+</div>

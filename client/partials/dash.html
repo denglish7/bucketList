@@ -1,0 +1,29 @@
+<div ng-controller='sessionController'>
+    <p>Bucket List</p>
+    <a href="#/dash">Home</a>
+    <a href="/logout">Logout</a><br>
+    <h3>Welcome {{curUser.name[0].toUpperCase() + curUser.name.slice(1)}}!</h3>
+
+    <div ng-controller='bucketController'>
+        <p ng-repeat='error in errors' style='color: red'>{{error}}</p>
+        <input ng-model='newBucket.title' type="text" placeholder="Title">
+        <input ng-model='newBucket.description' type="text" placeholder='Description'>
+        <select ng-model='newBucket._user'>
+            <option ng-repeat='user in users' value="{{user._id}}">{{user.name}}</option>
+        </select>
+        <button ng-click='addBucket()'>Add to List</button>
+    </div>
+        <h4>Before I die I want to...</h4>
+        <div ng-repeat='bucket in curUser._buckets'>
+            <input type="checkbox">{{bucket._creator.name}} | {{bucket.title}} - {{bucket.description}} - {{bucket.createdAt | date: 'MMM d, y'}}
+        </div>
+
+
+
+
+
+    <h3>List of other users (Click to view profile)</h3>
+    <div ng-repeat='user in users'>
+        <a href="" ng-click='show(user._id)'>{{user.name}}</a>
+    </div>
+</div>
